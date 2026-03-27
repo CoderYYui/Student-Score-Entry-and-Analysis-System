@@ -30,7 +30,7 @@
               <el-input v-model="questionForm.questionText" type="textarea" :rows="5" :placeholder="t('message.questionPlaceholder')" />
             </el-form-item>
             <el-form-item :label="t('message.uploadAttachment')">
-              <el-upload :auto-upload="false" :show-file-list="false" :before-upload="handleQuestionFile">
+              <el-upload :auto-upload="false" :show-file-list="false" :on-change="handleQuestionFileChange">
                 <el-button>{{ t('message.chooseImage') }}</el-button>
               </el-upload>
               <div v-if="questionForm.questionAttachment" class="attachment-preview">
@@ -89,7 +89,7 @@
             <div class="reply-panel">
               <el-input v-model="replyDrafts[item.id].replyText" type="textarea" :rows="3" :placeholder="t('message.replyPlaceholder')" />
               <div class="reply-actions">
-                <el-upload :auto-upload="false" :show-file-list="false" :before-upload="(file) => handleReplyFile(file, item.id)">
+                <el-upload :auto-upload="false" :show-file-list="false" :on-change="(uploadFile) => handleReplyFileChange(uploadFile, item.id)">
                   <el-button size="small">{{ t('message.uploadAttachment') }}</el-button>
                 </el-upload>
                 <el-button type="primary" size="small" @click="submitReply(item.id)">{{ t('message.sendReply') }}</el-button>
@@ -182,6 +182,21 @@ const handleReplyFile = async (file, id) => {
   replyDrafts[id].replyAttachment = await uploadAttachment(file)
   ElMessage.success(t('message.uploadSuccess'))
   return false
+}
+
+const handleQuestionFileChange = async (uploadFile) => {
+  const rawFile = uploadFile?.raw
+  if (!rawFile) return
+  questionForm.questionAttachment = await uploadAttachment(rawFile)
+  ElMessage.success(t('message.uploadSuccess'))
+}
+
+const handleReplyFileChange = async (uploadFile, id) => {
+  const rawFile = uploadFile?.raw
+  if (!rawFile) return
+  ensureReplyDraft(id)
+  replyDrafts[id].replyAttachment = await uploadAttachment(rawFile)
+  ElMessage.success(t('message.uploadSuccess'))
 }
 
 const isImageAttachment = (url) => /\.(png|jpg|jpeg|gif|webp|bmp|svg)(\?|$)/i.test(url || '')
