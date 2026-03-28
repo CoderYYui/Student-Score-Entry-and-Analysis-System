@@ -33,5 +33,20 @@ This is a full-stack application for managing student scores and analyzing cours
 4. Access the app at `http://localhost:5173`.
 
 ## Default Credentials
-- **Teacher**: `teacher1` / `123456`
-- **Student**: `student1` / `123456`
+- **Secretary**: 
+
+  **Username:** `sec1` 
+
+  **Password:**  `123456`
+
+- **Student**: 
+
+  Username:`stu001
+
+  Password: 123456
+
+- **Teacher:**
+
+  **Username:** `Teacher 001` / Teacher 002
+
+  **Password:**  `123456`
