@@ -16,6 +16,9 @@ public interface ScoreMapper {
     @Select("SELECT s.*, u.name as studentName FROM scores s JOIN users u ON s.student_id = u.id WHERE s.student_id = #{studentId}")
     List<Score> findByStudentId(Long studentId);
 
+    @Delete("DELETE FROM scores WHERE course_id = #{courseId}")
+    void deleteByCourseId(Long courseId);
+
     @Update("UPDATE scores SET " +
             "attendance_score=#{attendanceScore}, performance_score=#{performanceScore}, homework_score=#{homeworkScore}, " +
             "test1_score=#{test1Score}, test2_score=#{test2Score}, test3_score=#{test3Score}, test4_score=#{test4Score}, " +

@@ -8,6 +8,7 @@ import com.student.score.system.mapper.UserMapper;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
@@ -64,11 +65,13 @@ public class SecretaryController {
         return updateUserByRole(id, payload, "STUDENT");
     }
 
+    @Transactional
     @DeleteMapping("/teachers/{id}")
     public Map<String, Object> deleteTeacher(@PathVariable Long id) {
         return deleteUserByRole(id, "TEACHER");
     }
 
+    @Transactional
     @DeleteMapping("/students/{id}")
     public Map<String, Object> deleteStudent(@PathVariable Long id) {
         return deleteUserByRole(id, "STUDENT");
@@ -167,16 +170,26 @@ public class SecretaryController {
     }
 
     private Map<String, Object> deleteUserByRole(Long id, String role) {
-        Map<String, Object> response = new HashMap<>();
-        User existingUser = userMapper.findById(id);
-        if (existingUser == null || !role.equals(existingUser.getRole())) {
-            response.put("success", false);
-            response.put("message", "用户不存在");
-            return response;
-        }
-        userMapper.deleteById(id);
-        response.put("success", true);
-        response.put("message", "用户删除成功");
+    Map<String, Object> response = new HashMap<>();
+    User existingUser = userMapper.findById(id);
+    if (existingUser == null || !role.equals(existingUser.getRole())) {
+        response.put("success", false);
+        response.put("message", "用户不存在");
         return response;
     }
+
+    // 只处理“学生删除”，先清理所有外键引用该学生的记录
+    if ("STUDENT".equals(role)) {
+        jdbcTemplate.update("DELETE FROM score_messages WHERE student_id = ?", id);
+        jdbcTemplate.update("DELETE FROM satisfaction_surveys WHERE student_id = ?", id);
+        jdbcTemplate.update("DELETE FROM scores WHERE student_id = ?", id);
+        jdbcTemplate.update("DELETE FROM enrollments WHERE student_id = ?", id);
+    }
+
+    userMapper.deleteById(id);
+
+    response.put("success", true);
+    response.put("message", "用户删除成功");
+    return response;
+}
 }

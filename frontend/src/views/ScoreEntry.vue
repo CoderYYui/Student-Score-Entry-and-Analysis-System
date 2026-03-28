@@ -4,7 +4,7 @@
             <div>
                 <div class="hero-eyebrow">Course Workflow</div>
                 <h2>{{ t('score.title') }}</h2>
-                <p>批量录入课程成绩、自动回写综合得分，并实时追踪学生缺勤与分布状态。</p>
+                <p>Batch-enter course scores, automatically update total results, and track absences and distribution in real time.</p>
             </div>
             <div class="hero-stats">
                 <div class="hero-stat">
@@ -27,7 +27,7 @@
                 <div class="card-header">
                     <div>
                         <h3>{{ t('score.title') }}</h3>
-                        <p>可直接在表格中修改各评分维度，系统会自动保存并重新计算等级。</p>
+                        <p>Edit scoring dimensions directly in the table. The system auto-saves and recalculates grades.</p>
                     </div>
                     <div class="header-actions">
                         <el-tag v-if="saveStatus" :type="saveStatusType" effect="light">{{ saveStatus }}</el-tag>
@@ -121,9 +121,9 @@
         </el-table-column>
         
         <el-table-column prop="gradeLabel" :label="t('score.grade')" width="80" fixed="right">
-            <template #default="scope">
-                 <el-tag :type="getGradeType(scope.row.gradeLabel)">{{ scope.row.gradeLabel }}</el-tag>
-            </template>
+        <template #default="scope">
+            <el-tag :type="getGradeType(scope.row.gradeLabel)">{{ formatGradeLabel(scope.row.gradeLabel) }}</el-tag>
+        </template>
         </el-table-column>
             </el-table>
             </template>
@@ -137,7 +137,7 @@
                         </div>
                         <div class="mobile-score-summary">
                             <span>{{ item.totalScore ? item.totalScore.toFixed(1) : '-' }}</span>
-                            <el-tag :type="getGradeType(item.gradeLabel)">{{ item.gradeLabel || '-' }}</el-tag>
+                            <el-tag :type="getGradeType(item.gradeLabel)">{{ formatGradeLabel(item.gradeLabel) || '-' }}</el-tag>
                         </div>
                     </div>
 
@@ -225,8 +225,8 @@ const fetchScores = async () => {
 const handleInit = async () => {
     initLoading.value = true
     try {
-        await axios.post(`/api/scores/course/${courseId}/init`)
-        ElMessage.success('初始化成功！已同步最新学生名单')
+        await axios.post(`/api/scores/course/${courseId}/reset`)
+        ElMessage.success('Initialization successful! The latest student roster has been synced.')
         await fetchScores()
     } catch(e) {
         ElMessage.error('初始化失败')
@@ -252,13 +252,39 @@ const updateScore = async (score) => {
     }
 }
 
-const getGradeType = (label) => {
-    if (label === '优秀') return 'success'
-    if (label === '良好') return ''
-    if (label === '中等') return 'warning'
-    if (label === '及格') return 'info'
-    return 'danger'
+const formatGradeLabel = (label) => {
+  if (!label) return ''
+  const map = {
+    A: 'Excellent',
+    B: 'Good',
+    C: 'Moderate',
+    D: 'Pass',
+    F: 'Fail',
+    // 兼容旧数据（如果库里还有中文/英文全称）
+    '优秀': 'Excellent',
+    '良好': 'Good',
+    '中等': 'Moderate',
+    '及格': 'Pass',
+    '不及格': 'Fail',
+    Excellent: 'Excellent',
+    Good: 'Good',
+    Moderate: 'Moderate',
+    Pass: 'Pass',
+    Fail: 'Fail'
+  }
+  return map[label] || String(label)
 }
+
+const getGradeType = (label) => {
+  const normalized = formatGradeLabel(label)
+  if (normalized === 'Excellent') return 'success'
+  if (normalized === 'Good') return ''
+  if (normalized === 'Moderate') return 'warning'
+  if (normalized === 'Pass') return 'info'
+  return 'danger'
+}
+
+
 
 const updateViewport = () => {
     isCompact.value = window.innerWidth < 768

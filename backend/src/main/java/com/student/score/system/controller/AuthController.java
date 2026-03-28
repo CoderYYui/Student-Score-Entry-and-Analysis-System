@@ -22,19 +22,19 @@ public class AuthController {
         Map<String, Object> response = new HashMap<>();
         if (userMapper.findByUsername(user.getUsername()) != null) {
             response.put("success", false);
-            response.put("message", "用户名已存在");
+            response.put("message", "Username already exists.");
             return response;
         }
         if (user.getName() == null || user.getName().isBlank() || user.getPassword() == null || user.getPassword().isBlank()) {
             response.put("success", false);
-            response.put("message", "请完整填写注册信息");
+            response.put("message", "Please complete the registration information completely.");
             return response;
         }
         
         user.setStatus("PENDING");
         userMapper.insert(user);
         response.put("success", true);
-        response.put("message", "注册申请已提交，请等待教学秘书审批");
+        response.put("message", "Your registration application has been submitted. Please wait for the approval from the teaching secretary.");
         return response;
     }
 
@@ -49,25 +49,25 @@ public class AuthController {
         
         if (user == null) {
              response.put("success", false);
-               response.put("message", "用户不存在");
+               response.put("message", "The user does not exist.");
              return response;
         }
 
         if (user.isLocked()) {
              response.put("success", false);
-               response.put("message", "账号已锁定，请联系管理员处理");
+               response.put("message", "The account has been locked. Please contact the administrator for handling.");
              return response;
         }
 
         if ("PENDING".equals(user.getStatus())) {
              response.put("success", false);
-               response.put("message", "账号尚未审批，请联系教学秘书");
+               response.put("message", "The account has not been approved yet. Please contact the teaching secretary.");
              return response;
         }
 
         if ("REJECTED".equals(user.getStatus())) {
              response.put("success", false);
-               response.put("message", "注册申请已驳回，请重新提交");
+               response.put("message", "Your registration application has been rejected. Please resubmit.");
              return response;
         }
 
@@ -91,9 +91,9 @@ public class AuthController {
             
             response.put("success", false);
             if (user.isLocked()) {
-                response.put("message", "连续 5 次密码错误，账号已锁定");
+                response.put("message", "Five consecutive incorrect password entries have been made, and the account has been locked.");
             } else {
-                response.put("message", "无效凭证，已失败 " + user.getFailedAttempts() + " 次");
+                response.put("message", "Invalid voucher, failed " + user.getFailedAttempts() + " times");
             }
         }
         return response;

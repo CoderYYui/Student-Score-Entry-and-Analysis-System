@@ -5,6 +5,7 @@ import com.student.score.system.mapper.ScoreMapper;
 import com.student.score.system.mapper.CourseMapper;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
@@ -24,6 +25,24 @@ public class ScoreController {
     @GetMapping("/course/{courseId}")
     public List<Score> getScoresByCourse(@PathVariable Long courseId) {
         return scoreMapper.findByCourseId(courseId);
+    }
+
+    @PostMapping("/course/{courseId}/reset")
+    @Transactional
+    public ResponseEntity<?> resetScores(@PathVariable Long courseId) {
+        // 1) 删除该课程所有成绩记录（清空）
+        scoreMapper.deleteByCourseId(courseId);
+
+        // 2) 按当前选课名单重新插入空白行
+        List<Long> enrolledStudentIds = courseMapper.findStudentIdsByCourseId(courseId);
+        for (Long sId : enrolledStudentIds) {
+            Score newScore = new Score();
+            newScore.setCourseId(courseId);
+            newScore.setStudentId(sId);
+            scoreMapper.insert(newScore);
+        }
+
+        return ResponseEntity.ok(Map.of("message", "Scores reset"));
     }
 
     @PostMapping("/course/{courseId}/init")

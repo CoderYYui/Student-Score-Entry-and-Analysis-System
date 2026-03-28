@@ -51,10 +51,10 @@ public class Score {
         this.totalScore = (0.2 * regularAggregate) + (0.2 * testAggregate) 
                         + (0.3 * labAggregate) + (0.3 * (finalExamScore == null ? 0 : finalExamScore));
                         
-        if (this.totalScore >= 90) this.gradeLabel = "优秀";
-        else if (this.totalScore >= 80) this.gradeLabel = "良好";
-        else if (this.totalScore >= 70) this.gradeLabel = "中等";
-        else if (this.totalScore >= 60) this.gradeLabel = "及格";
-        else this.gradeLabel = "不及格";
+        if (this.totalScore >= 90) this.gradeLabel = "A";
+        else if (this.totalScore >= 80) this.gradeLabel = "B";
+        else if (this.totalScore >= 70) this.gradeLabel = "C";
+        else if (this.totalScore >= 60) this.gradeLabel = "D";
+        else this.gradeLabel = "F";
     }
 }

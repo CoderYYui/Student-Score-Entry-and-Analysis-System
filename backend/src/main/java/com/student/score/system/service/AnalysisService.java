@@ -102,21 +102,42 @@ public class AnalysisService {
     }
 
     private Map<String, Object> calculateIndirectEvaluation(Long courseId) {
-        var surveys = surveyMapper.findByCourseId(courseId);
-        Map<String, Integer> counts = new HashMap<>();
-        counts.put("VERY_SATISFIED", 0);
-        counts.put("SATISFIED", 0);
-        counts.put("NEUTRAL", 0); // "基本满意"
-        counts.put("DISSATISFIED", 0); // "不满意" & "比较满意" maps to SATISFIED/VERY based on enum choice? 
-        // Requirement says: "Very Satisfied", "Compare Satisfied", "Satisfied", "Basic Satisfied", "Unsatisfied"
-        // Let's assume the DB stores matching enums or strings.
-        
-        for (var s : surveys) {
-            String level = s.getSatisfactionLevel(); 
-            counts.put(level, counts.getOrDefault(level, 0) + 1);
-        }
-        return Map.of("counts", counts, "total", surveys.size());
+    var surveys = surveyMapper.findByCourseId(courseId);
+    Map<String, Integer> counts = new HashMap<>();
+    counts.put("VERY_SATISFIED", 0);
+    counts.put("SATISFIED", 0);
+    counts.put("NEUTRAL", 0);
+    counts.put("DISSATISFIED", 0);
+
+    for (var s : surveys) {
+        String raw = s.getSatisfactionLevel();
+        String level = normalizeSatisfactionLevel(raw);
+        if (level == null) continue; // 未识别的值就跳过
+        counts.put(level, counts.getOrDefault(level, 0) + 1);
     }
+
+    return Map.of("counts", counts, "total", surveys.size());
+}
+
+private String normalizeSatisfactionLevel(String raw) {
+    if (raw == null) return null;
+    String v = raw.trim();
+
+
+    if ("非常满意".equals(v)) return "VERY_SATISFIED";
+    if ("比较满意".equals(v)) return "SATISFIED";
+    if ("满意".equals(v)) return "SATISFIED";
+    if ("基本满意".equals(v)) return "NEUTRAL";
+    if ("不满意".equals(v)) return "DISSATISFIED";
+
+
+    if ("VERY_SATISFIED".equalsIgnoreCase(v)) return "VERY_SATISFIED";
+    if ("SATISFIED".equalsIgnoreCase(v)) return "SATISFIED";
+    if ("NEUTRAL".equalsIgnoreCase(v)) return "NEUTRAL";
+    if ("DISSATISFIED".equalsIgnoreCase(v)) return "DISSATISFIED";
+
+    return null;
+}
 
     public Map<String, Object> calculateStudentObjectiveAchievement(Long courseId, Long studentId) {
         Score score = scoreMapper.findByStudentAndCourse(studentId, courseId);

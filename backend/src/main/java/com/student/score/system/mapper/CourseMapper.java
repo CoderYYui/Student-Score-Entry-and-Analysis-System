@@ -40,4 +40,16 @@ public interface CourseMapper {
     
     @Delete("DELETE FROM enrollments WHERE course_id = #{courseId}")
     void removeAllEnrollments(Long courseId);
+
+    @Delete("DELETE FROM course_objectives WHERE course_id = #{courseId}")
+    void removeAllObjectivesByCourseId(Long courseId);
+
+    @Delete("DELETE FROM scores WHERE course_id = #{courseId}")
+    void removeAllScoresByCourseId(Long courseId);
+
+    @Delete("DELETE FROM satisfaction_surveys WHERE course_id = #{courseId}")
+    void removeAllSurveysByCourseId(Long courseId);
+
+    @Delete("DELETE FROM score_messages WHERE course_id = #{courseId}")
+    void removeAllMessagesByCourseId(Long courseId);
 }

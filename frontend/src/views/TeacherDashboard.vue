@@ -115,6 +115,47 @@ const normalizeSlot = (slotText) => {
   return slotText.replace('第', '').replace('节', '')
 }
 
+const normalizeDayKey = (dayText = '') => {
+  const day = String(dayText).trim()
+  const dayMap = {
+    '周一': '周一', '周二': '周二', '周三': '周三', '周四': '周四', '周五': '周五',
+    'Mon': '周一', 'Monday': '周一',
+    'Tue': '周二', 'Tuesday': '周二',
+    'Wed': '周三', 'Wednesday': '周三',
+    'Thu': '周四', 'Thursday': '周四',
+    'Fri': '周五', 'Friday': '周五'
+  }
+  const normalized = day.replace(',', '')
+  return dayMap[normalized] || ''
+}
+
+const parseClassTime = (classTime) => {
+  if (!classTime) return null
+  const text = String(classTime).trim()
+
+  // 1) 中文格式: "周一 第1-2节" 或 "周一 1-2"
+  let m = text.match(/^(周[一二三四五])\s*(?:第)?\s*(\d+\s*-\s*\d+)\s*(?:节)?$/)
+  if (m) {
+    return {
+      day: normalizeDayKey(m[1]),
+      slot: m[2].replace(/\s+/g, '')
+    }
+  }
+
+  // 2) 英文格式: "Monday, Periods 7-8" / "Mon 7-8" / "Friday, 1-2"
+  m = text.match(/^(Monday|Mon|Tuesday|Tue|Wednesday|Wed|Thursday|Thu|Friday|Fri)[,\s]*(?:Periods?)?\s*(\d+\s*-\s*\d+)$/i)
+  if (m) {
+    const dayRaw = m[1]
+    const dayNorm = dayRaw.charAt(0).toUpperCase() + dayRaw.slice(1).toLowerCase()
+    return {
+      day: normalizeDayKey(dayNorm),
+      slot: m[2].replace(/\s+/g, '')
+    }
+  }
+
+  return null
+}
+
 const timetableData = computed(() => {
   const data = timeSlots.value.map(slot => ({
     slot,
@@ -126,18 +167,14 @@ const timetableData = computed(() => {
   }));
 
   courses.value.forEach(course => {
-    if (course.classTime) {
-      const parts = course.classTime.trim().split(/\s+/);
-      if (parts.length === 2) {
-        const day = parts[0];
-        const slot = normalizeSlot(parts[1]);
-        const row = data.find(r => normalizeSlot(r.slot) === slot);
-        if (row && Object.keys(row).includes(day)) {
-          row[day] = course;
-        }
-      }
-    }
-  });
+  const parsed = parseClassTime(course.classTime)
+  if (!parsed) return
+
+  const row = data.find(r => normalizeSlot(r.slot) === parsed.slot)
+  if (row && Object.prototype.hasOwnProperty.call(row, parsed.day)) {
+    row[parsed.day] = course
+  }
+})
   return data;
 });
 

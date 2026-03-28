@@ -6,7 +6,7 @@
         <div>
           <div class="hero-eyebrow">Account Overview</div>
           <h2>{{ user.name || user.username }}</h2>
-          <p>查看当前登录账号的身份、审批状态和基础联系信息。</p>
+          <p>View the current account’s role, approval status, and basic contact information.</p>
         </div>
       </div>
       <el-tag type="success" size="large">{{ userRoleText }}</el-tag>
@@ -17,7 +17,7 @@
         <div class="card-header">
           <div>
             <h3>{{ t('app.profile') }}</h3>
-            <p>该页面用于集中查看当前账号的个人信息与使用身份。</p>
+            <p>This page provides a centralized view of your profile and account role.</p>
           </div>
         </div>
       </template>
@@ -35,9 +35,9 @@
         <div class="profile-panel muted-panel">
           <div class="panel-title">Account status</div>
           <el-descriptions :column="1" border>
-            <el-descriptions-item :label="t('login.email')">{{ user.email || '未填写' }}</el-descriptions-item>
+            <el-descriptions-item :label="t('login.email')">{{ user.email || 'Not filled' }}</el-descriptions-item>
             <el-descriptions-item label="Approval Status">{{ user.status || 'APPROVED' }}</el-descriptions-item>
-            <el-descriptions-item label="Login Lock">{{ user.locked ? '已锁定' : '正常' }}</el-descriptions-item>
+            <el-descriptions-item label="Login Lock">{{ user.locked ? 'Locked' : 'Normal' }}</el-descriptions-item>
           </el-descriptions>
         </div>
       </div>

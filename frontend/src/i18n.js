@@ -426,10 +426,10 @@ const messages = {
       "registerBtn": "立即注册",
       "goRegister": "没有账号？点击注册",
       "goLogin": "已有账号？返回登录",
-      "failed": "账号密码错误或网络连接失败",
-      "success": "登录成功",
-      "registerSuccess": "注册成功，请等待教学秘书审批归类。",
-      "offline": "网络异常，已启用离线模式，功能可能受限"
+      "failed": "Invalid credentials or connection error",
+      "success": "Login successful",
+      "registerSuccess": "Registration successful. Please wait for the approval from the teaching secretary.",
+      "offline": "Network error. Using offline mode or try again later."
     },
     "role": {
       "teacher": "教师",
@@ -464,18 +464,18 @@ const messages = {
       "classLocation": "上课地点",
       "classLocationPlaceholder": "请选择上课地点",
       "days": {
-        "mon": "周一",
-        "tue": "周二",
-        "wed": "周三",
-        "thu": "周四",
-        "fri": "周五"
+        "mon": "Monday",
+        "tue": "Tuesday",
+        "wed": "Wednesday",
+        "thu": "Thursday",
+        "fri": "Friday"
       },
       "timeSlots": {
-        "slot1": "第1-2节",
-        "slot2": "第3-4节",
-        "slot3": "第5-6节",
-        "slot4": "第7-8节",
-        "slot5": "第9-10节"
+        "slot1": "Sections 1-2",
+        "slot2": "Sections 3-4",
+        "slot3": "Sections 5-6",
+        "slot4": "Sections 7-8",
+        "slot5": "Sections 9-10"
       }
     },
     "secretary": {
@@ -564,7 +564,7 @@ const messages = {
         "teacherId": "教师 ID",
         "status": "状态",
         "pageDesc": "集中核对课程、学期和教师分配等关键信息。",
-        "normal": "正常"
+        "normal": "Normal"
       },
       "fillFields": "请完整填写课程基础信息。",
       "weightError": "总权重无效 (必须精确等于 1.0)",
@@ -640,7 +640,7 @@ const messages = {
       "testsMethod": "Quiz",
       "labMethod": "Experiment",
       "finalExamMethod": "Final examination",
-      "peopleSuffix": "人",
+      "peopleSuffix": " people",
       "downloadSuccess": "报告生成并下载成功。",
       "downloadWait": "正在为您生成深度报告，请稍候..."
     },

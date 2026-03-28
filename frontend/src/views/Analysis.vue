@@ -4,7 +4,7 @@
       <div>
         <div class="hero-eyebrow">Insight Center</div>
         <h2>{{ t('analysis.title') }}</h2>
-        <p>聚合课程成绩分布、目标达成度与满意度数据，帮助教师快速定位教学改进方向。</p>
+        <p>Aggregate score distribution, objective achievement, and satisfaction data to quickly identify teaching improvement opportunities.</p>
       </div>
       <div class="hero-actions">
         <div class="hero-chip">
@@ -214,28 +214,28 @@ const passRate = computed(() => {
 })
 const riskBucketCount = computed(() => {
   const failBucket = overallEvalRaw.value.find(item => item.score_range === '0-59')
-  return failBucket ? `${failBucket.student_count}人` : '0人'
+  return failBucket ? `${failBucket.student_count} people` : '0 people'
 })
 const hasAnalysisData = computed(() => totalStudents.value > 0)
 const overallEvalRaw = ref([])
 const indirectCounts = ref({ counts: {}, total: 0 })
 const summaryLine1 = computed(() => {
   if (!totalStudents.value) {
-    return '当前课程尚未形成可分析的成绩样本。'
+    return 'No sufficient score samples are available for analysis yet.'
   }
-  return `当前课程共纳入 ${totalStudents.value} 名学生样本，平均成绩 ${formatStat(courseStats.value.avg_score, 2)}，整体及格率为 ${passRate.value}。`
+  return `This course includes ${totalStudents.value} student samples. The average score is ${formatStat(courseStats.value.avg_score, 2)}, and the overall pass rate is ${passRate.value}.`
 })
 const summaryLine2 = computed(() => {
   if (averageAchievement.value === '--') {
-    return '课程目标达成度将在录入成绩后自动生成。'
+    return 'Objective achievement will be generated automatically after scores are entered.'
   }
-  return `课程目标平均达成度为 ${averageAchievement.value}，可结合直接评价分布进一步定位薄弱环节。`
+  return `The average objective achievement is ${averageAchievement.value}. You may use the direct-evaluation distribution to pinpoint weak areas.`
 })
 const summaryLine3 = computed(() => {
   if (!surveyTotal.value) {
-    return '当前尚无满意度问卷样本，间接评价部分会在学生提交问卷后自动补齐。'
+    return 'No satisfaction survey samples are available yet. Indirect evaluation will be completed after students submit surveys.'
   }
-  return `当前已采集 ${surveyTotal.value} 份满意度问卷，系统已将其纳入间接评价结果。`
+  return `${surveyTotal.value} satisfaction surveys have been collected and included in the indirect evaluation results.`
 })
 
 const downloadReport = async () => {

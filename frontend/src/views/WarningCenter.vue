@@ -25,7 +25,7 @@
           <div class="card-header">
             <div>
               <h3>{{ t('warning.teacherList') }}</h3>
-              <p>按综合分、缺勤综合识别风险学生，便于教师快速介入。</p>
+              <p>Identify at-risk students based on total score and absences to enable timely intervention.</p>
             </div>
           </div>
         </template>

@@ -4,7 +4,7 @@
       <div>
         <div class="hero-eyebrow">Performance Snapshot</div>
         <h2>{{ t('studentScore.title') }}</h2>
-        <p>查看当前课程的成绩明细、分项表现与综合达成情况，快速定位自己的优势与风险点。</p>
+        <p>View the detailed grades of the current course, the individual performance breakdown and the overall achievement status, and quickly identify your strengths and potential risks.</p>
       </div>
       <div class="hero-actions">
         <div class="hero-chip" v-if="score">
@@ -26,7 +26,7 @@
             <div class="card-header">
               <div>
                 <span class="card-title">{{ t('studentScore.detailTitle') }}</span>
-                <p class="card-subtitle">系统会自动计算测试均分、实验成绩和最终加权得分。</p>
+                <p class="card-subtitle">The system will automatically calculate the test average score, the experimental result and the final weighted score.</p>
               </div>
               <el-tag :type="getGradeType(score?.gradeLabel)" size="large" effect="dark" v-if="score">
                 {{ score?.gradeLabel || t('studentScore.unknown') }}
@@ -146,11 +146,14 @@ const getSegmentType = (val) => {
 }
 
 const getGradeType = (label) => {
-    if (label === '优秀' || label === 'Excellent') return 'success'
-    if (label === '良好' || label === 'Good') return ''
-    if (label === '中等' || label === 'Moderate') return 'warning'
-    if (label === '及格' || label === 'Pass') return 'info'
-    return 'danger'
+  const map = { A: 'Excellent', B: 'Good', C: 'Moderate', D: 'Pass', F: 'Fail' }
+  const normalized = map[label] || label
+
+  if (normalized === '优秀' || normalized === 'Excellent') return 'success'
+  if (normalized === '良好' || normalized === 'Good') return ''
+  if (normalized === '中等' || normalized === 'Moderate') return 'warning'
+  if (normalized === '及格' || normalized === 'Pass') return 'info'
+  return 'danger'
 }
 
   const radarLabels = computed(() => [

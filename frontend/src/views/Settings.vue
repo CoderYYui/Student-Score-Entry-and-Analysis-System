@@ -4,7 +4,7 @@
       <div>
         <div class="hero-eyebrow">Workspace Preferences</div>
         <h2>{{ t('app.settings') }}</h2>
-        <p>在这里切换系统语言并查看当前应用版本信息，设置会保存在本地浏览器中。</p>
+        <p>Switch the system language and view the current app version. Settings are saved in your browser.</p>
       </div>
       <div class="hero-chip">
         <strong>v1.0.0</strong>

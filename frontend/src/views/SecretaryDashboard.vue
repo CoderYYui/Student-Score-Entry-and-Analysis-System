@@ -25,7 +25,7 @@
                   <div>
                     <div class="tab-eyebrow">Planning Studio</div>
                     <h3>{{ t('secretary.tabs.createCourse') }}</h3>
-                    <p>集中完成课程基础信息、授课安排与教学目标权重配置，减少分散录入带来的遗漏。</p>
+                    <p>Concentrate on completing the configuration of course basic information, teaching schedule and teaching objectives' weights, reducing the omissions caused by scattered input.</p>
                   </div>
                   <div class="tab-hero-stats">
                     <div class="mini-stat">
@@ -72,40 +72,40 @@
                         <el-col :span="12">
                             <el-form-item :label="t('course.classTime')">
                                 <el-select v-model="newCourse.classTime" :placeholder="t('course.classTimePlaceholder')" style="width:100%">
-                                    <el-option label="周一 第1-2节" value="周一 第1-2节"></el-option>
-                                    <el-option label="周一 第3-4节" value="周一 第3-4节"></el-option>
-                                    <el-option label="周一 第5-6节" value="周一 第5-6节"></el-option>
-                                    <el-option label="周一 第7-8节" value="周一 第7-8节"></el-option>
-                                    <el-option label="周二 第1-2节" value="周二 第1-2节"></el-option>
-                                    <el-option label="周二 第3-4节" value="周二 第3-4节"></el-option>
-                                    <el-option label="周二 第5-6节" value="周二 第5-6节"></el-option>
-                                    <el-option label="周二 第7-8节" value="周二 第7-8节"></el-option>
-                                    <el-option label="周三 第1-2节" value="周三 第1-2节"></el-option>
-                                    <el-option label="周三 第3-4节" value="周三 第3-4节"></el-option>
-                                    <el-option label="周三 第5-6节" value="周三 第5-6节"></el-option>
-                                    <el-option label="周三 第7-8节" value="周三 第7-8节"></el-option>
-                                    <el-option label="周四 第1-2节" value="周四 第1-2节"></el-option>
-                                    <el-option label="周四 第3-4节" value="周四 第3-4节"></el-option>
-                                    <el-option label="周四 第5-6节" value="周四 第5-6节"></el-option>
-                                    <el-option label="周四 第7-8节" value="周四 第7-8节"></el-option>
-                                    <el-option label="周五 第1-2节" value="周五 第1-2节"></el-option>
-                                    <el-option label="周五 第3-4节" value="周五 第3-4节"></el-option>
-                                    <el-option label="周五 第5-6节" value="周五 第5-6节"></el-option>
-                                    <el-option label="周五 第7-8节" value="周五 第7-8节"></el-option>
+                                    <el-option label="Monday, Periods 1-2" value="Monday, Periods 1-2"></el-option>
+                                    <el-option label="Monday, Periods 3-4" value="Monday, Periods 3-4"></el-option>
+                                    <el-option label="Monday, Periods 5-6" value="Monday, Periods 5-6"></el-option>
+                                    <el-option label="Monday, Periods 7-8" value="Monday, Periods 7-8"></el-option>
+                                    <el-option label="Tuesday, Periods 1-2" value="Tuesday, Periods 1-2"></el-option>
+                                    <el-option label="Tuesday, Periods 3-4" value="Tuesday, Periods 3-4"></el-option>
+                                    <el-option label="Tuesday, Periods 5-6" value="Tuesday, Periods 5-6"></el-option>
+                                    <el-option label="Tuesday, Periods 7–8" value="Tuesday, Periods 7–8"></el-option>
+                                    <el-option label="Wednesday, Periods 1-2" value="Wednesday, Periods 1-2"></el-option>
+                                    <el-option label="Wednesday, Periods 3-4" value="Wednesday, Periods 3-4"></el-option>
+                                    <el-option label="Wednesday, Periods 5-6" value="Wednesday, Periods 5-6"></el-option>
+                                    <el-option label="Wednesday, Periods 7-8" value="Wednesday, Periods 7-8"></el-option>
+                                    <el-option label="Thursday, Periods 1-2" value="Thursday, Periods 1-2"></el-option>
+                                    <el-option label="Thursday, Periods 3-4" value="Thursday, Periods 3-4"></el-option>
+                                    <el-option label="Thursday, Periods 5-6" value="Thursday, Periods 5-6"></el-option>
+                                    <el-option label="Thursday, Periods 7-8" value="Thursday, Periods 7-8"></el-option>
+                                    <el-option label="Friday, Periods 1-2" value="Friday, Periods 1-2"></el-option>
+                                    <el-option label="Friday, Periods 3-4" value="Friday, Periods 3-4"></el-option>
+                                    <el-option label="Friday, Periods 5-6" value="Friday, Periods 5-6"></el-option>
+                                    <el-option label="Friday, Periods 7-8" value="Friday, Periods 7-8"></el-option>
                                 </el-select>
                             </el-form-item>
                         </el-col>
                         <el-col :span="12">
                             <el-form-item :label="t('course.classLocation')">
                                 <el-select v-model="newCourse.location" :placeholder="t('course.classLocationPlaceholder')" style="width:100%">
-                                    <el-option label="教一101" value="教一101"></el-option>
-                                    <el-option label="教一102" value="教一102"></el-option>
-                                    <el-option label="教一201" value="教一201"></el-option>
-                                    <el-option label="教一202" value="教一202"></el-option>
-                                    <el-option label="实验楼A区301" value="实验楼A区301"></el-option>
-                                    <el-option label="实验楼A区302" value="实验楼A区302"></el-option>
-                                    <el-option label="四教404" value="四教404"></el-option>
-                                    <el-option label="四教405" value="四教405"></el-option>
+                                    <el-option label="Teaching Building 1, Room 101" value="Teaching Building 1, Room 101"></el-option>
+                                    <el-option label="Teaching Building 1, Room 102" value="Teaching Building 1, Room 102"></el-option>
+                                    <el-option label="Teaching Building 1, Room 201" value="Teaching Building 1, Room 201"></el-option>
+                                    <el-option label="Teaching Building 1, Room 202" value="Teaching Building 1, Room 202"></el-option>
+                                    <el-option label="Room 301, Area A, Experiment Building" value="Room 301, Area A, Experiment Building"></el-option>
+                                    <el-option label="Room 302, Area A, Experiment Building" value="Room 302, Area A, Experiment Building"></el-option>
+                                    <el-option label="Building 4, Room 404" value="Building 4, Room 404"></el-option>
+                                    <el-option label="Building 4, Room 405" value="Building 4, Room 405"></el-option>
                                 </el-select>
                             </el-form-item>
                         </el-col>
@@ -172,7 +172,7 @@
                    <div>
                      <div class="tab-eyebrow">Enrollment Desk</div>
                      <h3>{{ t('secretary.tabs.enrollment') }}</h3>
-                     <p>快速完成学生选课与绑定，减少重复查找课程和学生编号的操作成本。</p>
+                     <p>Quickly enroll and bind students to courses, reducing repetitive lookups of course and student IDs.</p>
                    </div>
                    <div class="tab-hero-stats">
                      <div class="mini-stat">
@@ -187,7 +187,7 @@
                  </section>
                  <div class="enroll-box section-surface">
                     <h3 class="box-title">{{ t('secretary.enroll.title') }}</h3>
-                    <p class="box-subtitle">先选择目标课程，再输入学号完成单个学生的快速绑定。</p>
+                    <p class="box-subtitle">Select a target course first, then enter the student ID to bind a single student quickly.</p>
                     <el-form label-position="top">
                         <el-form-item :label="t('secretary.enroll.targetCourse')">
                             <el-select v-model="enrollment.courseId" filterable :placeholder="t('secretary.enroll.searchCourse')" size="large" style="width: 100%">
@@ -213,7 +213,7 @@
                     <div>
                       <div class="tab-eyebrow">Course Overview</div>
                       <h3>{{ t('secretary.tabs.courseList') }}</h3>
-                      <p>汇总查看课程编码、学期、授课教师等关键信息，便于排课和资源协调。</p>
+                      <p>View key details such as course code, semester, and instructor for scheduling and resource coordination.</p>
                     </div>
                     <div class="tab-hero-stats">
                       <div class="mini-stat">
@@ -229,8 +229,8 @@
                   <section class="table-shell">
                     <div class="table-shell-header">
                       <div>
-                        <h4>课程总览</h4>
-                        <p>按课程编码、名称和授课教师快速核对当前已创建课程。</p>
+                        <h4>Course Overview</h4>
+                        <p>Verify created courses quickly by course code, name, and instructor.</p>
                       </div>
                     </div>
                     <el-table :data="pagedCourses" stripe class="secretary-table">
@@ -284,7 +284,7 @@
                     <div>
                       <div class="tab-eyebrow">Approval Queue</div>
                       <h3>{{ t('secretary.tabs.approveUsers') }}</h3>
-                      <p>集中审批新用户注册申请，并在审批时直接指定用户身份角色。</p>
+                      <p>Review new registration requests centrally and assign user roles during approval.</p>
                     </div>
                     <div class="tab-hero-stats">
                       <div class="mini-stat alert-stat">
@@ -297,13 +297,13 @@
                     <div class="table-shell-header">
                       <div>
                         <h4>{{ t('secretary.approve.title') }}</h4>
-                        <p>审批结果会立即生效，支持在同一列表中完成通过、驳回和角色分配。</p>
+                        <p>Approval takes effect immediately; approve, reject, and assign roles within the same list.</p>
                       </div>
                     </div>
                   <el-table :data="pagedPendingUsers" stripe class="secretary-table">
                       <el-table-column prop="username" :label="t('secretary.approve.username')" align="center" />
                       <el-table-column prop="name" :label="t('secretary.approve.name')" align="center" />
-                      <el-table-column prop="email" label="邮箱" align="center" />
+                      <el-table-column prop="email" label="Email" align="center" />
                       <el-table-column prop="role" :label="t('secretary.approve.role')" align="center">
                           <template #default="scope">
                           <el-select v-model="scope.row.approvedRole" size="small" style="width: 120px;">
@@ -350,7 +350,7 @@
               <div class="table-shell-header">
                 <div>
                   <h4>{{ t('secretary.management.teacherTitle') }}</h4>
-                  <p>查看当前已配置的教师账号与身份信息。</p>
+                  <p>View and maintain configured teacher accounts and profiles.</p>
                 </div>
                 <el-button type="primary" @click="openUserDialog('TEACHER')">{{ t('secretary.management.addTeacher') }}</el-button>
               </div>
@@ -358,7 +358,7 @@
                 <el-table-column prop="id" label="ID" width="100" align="center" />
                 <el-table-column prop="username" :label="t('secretary.approve.username')" align="center" />
                 <el-table-column prop="name" :label="t('secretary.approve.name')" align="center" />
-                <el-table-column prop="email" label="邮箱" align="center" />
+                <el-table-column prop="email" label="Email" align="center" />
                 <el-table-column :label="t('secretary.approve.role')" width="140" align="center">
                   <template #default>
                     <el-tag type="success">{{ t('role.teacher') }}</el-tag>
@@ -403,7 +403,7 @@
               <div class="table-shell-header">
                 <div>
                   <h4>{{ t('secretary.management.studentTitle') }}</h4>
-                  <p>集中查看学生基础账号信息，便于配合选课绑定与课程组织。</p>
+                  <p>View student account basics centrally to support enrollment binding and course organization.</p>
                 </div>
                 <el-button type="primary" @click="openUserDialog('STUDENT')">{{ t('secretary.management.addStudent') }}</el-button>
               </div>
@@ -457,39 +457,40 @@
         </el-form-item>
         <el-form-item :label="t('course.classTime')">
           <el-select v-model="editingCourse.classTime" :placeholder="t('course.classTimePlaceholder')" style="width:100%">
-            <el-option label="周一 第1-2节" value="周一 第1-2节"></el-option>
-            <el-option label="周一 第3-4节" value="周一 第3-4节"></el-option>
-            <el-option label="周一 第5-6节" value="周一 第5-6节"></el-option>
-            <el-option label="周一 第7-8节" value="周一 第7-8节"></el-option>
-            <el-option label="周二 第1-2节" value="周二 第1-2节"></el-option>
-            <el-option label="周二 第3-4节" value="周二 第3-4节"></el-option>
-            <el-option label="周二 第5-6节" value="周二 第5-6节"></el-option>
-            <el-option label="周二 第7-8节" value="周二 第7-8节"></el-option>
-            <el-option label="周三 第1-2节" value="周三 第1-2节"></el-option>
-            <el-option label="周三 第3-4节" value="周三 第3-4节"></el-option>
-            <el-option label="周三 第5-6节" value="周三 第5-6节"></el-option>
-            <el-option label="周三 第7-8节" value="周三 第7-8节"></el-option>
-            <el-option label="周四 第1-2节" value="周四 第1-2节"></el-option>
-            <el-option label="周四 第3-4节" value="周四 第3-4节"></el-option>
-            <el-option label="周四 第5-6节" value="周四 第5-6节"></el-option>
-            <el-option label="周四 第7-8节" value="周四 第7-8节"></el-option>
-            <el-option label="周五 第1-2节" value="周五 第1-2节"></el-option>
-            <el-option label="周五 第3-4节" value="周五 第3-4节"></el-option>
-            <el-option label="周五 第5-6节" value="周五 第5-6节"></el-option>
-            <el-option label="周五 第7-8节" value="周五 第7-8节"></el-option>
+            <el-option label="Monday, Periods 1-2" value="Monday, Periods 1-2"></el-option>
+            <el-option label="Monday, Periods 3-4" value="Monday, Periods 3-4"></el-option>
+            <el-option label="Monday, Periods 5-6" value="Monday, Periods 5-6"></el-option>
+            <el-option label="Monday, Periods 7-8" value="Monday, Periods 7-8"></el-option>
+            <el-option label="Tuesday, Periods 1-2" value="Tuesday, Periods 1-2"></el-option>
+            <el-option label="Tuesday, Periods 3-4" value="Tuesday, Periods 3-4"></el-option>
+            <el-option label="Tuesday, Periods 5-6" value="Tuesday, Periods 5-6"></el-option>
+            <el-option label="Tuesday, Periods 7-8" value="Tuesday, Periods 7-8"></el-option>
+            <el-option label="Wednesday, Periods 1-2" value="Wednesday, Periods 1-2"></el-option>
+            <el-option label="Wednesday, Periods 3-4" value="Wednesday, Periods 3-4"></el-option>
+            <el-option label="Wednesday, Periods 5-6" value="Wednesday, Periods 5-6"></el-option>
+            <el-option label="Wednesday, Periods 7-8" value="Wednesday, Periods 7-8"></el-option>
+            <el-option label="Thursday, Periods 1-2" value="Thursday, Periods 1-2"></el-option>
+            <el-option label="Thursday, Periods 3-4" value="Thursday, Periods 3-4"></el-option>
+            <el-option label="Thursday, Periods 5-6" value="Thursday, Periods 5-6"></el-option>
+            <el-option label="Thursday, Periods 7-8" value="Thursday, Periods 7-8"></el-option>
+            <el-option label="Friday, Periods 1-2" value="Friday, Periods 1-2"></el-option>
+            <el-option label="Friday, Periods 3-4" value="Friday, Periods 3-4"></el-option>
+            <el-option label="Friday, Periods 5-6" value="Friday, Periods 5-6"></el-option>
+            <el-option label="Friday, Periods 7-8" value="Friday, Periods 7-8"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item :label="t('course.classLocation')">
           <el-select v-model="editingCourse.location" :placeholder="t('course.classLocationPlaceholder')" style="width:100%">
-            <el-option label="教一101" value="教一101"></el-option>
-            <el-option label="教一102" value="教一102"></el-option>
-            <el-option label="教一201" value="教一201"></el-option>
-            <el-option label="教二101" value="教二101"></el-option>
-            <el-option label="教二201" value="教二201"></el-option>
-            <el-option label="教二301" value="教二301"></el-option>
-            <el-option label="实验楼101" value="实验楼101"></el-option>
-            <el-option label="实验楼202" value="实验楼202"></el-option>
-            <el-option label="体育馆" value="体育馆"></el-option>
+            <el-option label="Teaching Building 1, Room 101" value="Teaching Building 1, Room 101"></el-option>
+            <el-option label="Teaching Building 1, Room 102" value="Teaching Building 1, Room 102"></el-option>
+            <el-option label="Teaching Building 1, Room 201" value="Teaching Building 1, Room 201"></el-option>
+            <el-option label="Teaching Building 1, Room 202" value="Teaching Building 1, Room 202"></el-option>
+            <el-option label="Teaching Building 2, Room 201" value="Teaching Building 2, Room 201"></el-option>
+            <el-option label="Teaching Building 2, Room 202" value="Teaching Building 2, Room 202"></el-option>
+            <el-option label="Room 301, Area A, Experiment Building" value="Room 301, Area A, Experiment Building"></el-option>
+            <el-option label="Room 302, Area A, Experiment Building" value="Room 302, Area A, Experiment Building"></el-option>
+            <el-option label="Building 4, Room 404" value="Building 4, Room 404"></el-option>
+            <el-option label="Building 4, Room 405" value="Building 4, Room 405"></el-option>
           </el-select>
         </el-form-item>
       </el-form>

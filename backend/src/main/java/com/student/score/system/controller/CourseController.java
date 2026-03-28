@@ -4,6 +4,7 @@ import com.student.score.system.entity.Course;
 import com.student.score.system.mapper.CourseMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
@@ -45,12 +46,21 @@ public class CourseController {
         return ResponseEntity.ok(course);
     }
 
+
+
     @DeleteMapping("/{id}")
+    @Transactional
     public ResponseEntity<?> deleteCourse(@PathVariable Long id) {
+        courseMapper.removeAllMessagesByCourseId(id);
+        courseMapper.removeAllSurveysByCourseId(id);
+        courseMapper.removeAllScoresByCourseId(id);
+        courseMapper.removeAllObjectivesByCourseId(id);
         courseMapper.removeAllEnrollments(id);
         courseMapper.delete(id);
         return ResponseEntity.ok().build();
     }
+
+
 
     @GetMapping("/teacher/{teacherId}")
     public List<Course> getTeacherCourses(@PathVariable Long teacherId) {
