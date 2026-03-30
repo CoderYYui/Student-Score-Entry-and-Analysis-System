@@ -50,3 +50,5 @@ This is a full-stack application for managing student scores and analyzing cours
   **Username:** `Teacher 001` / Teacher 002
 
   **Password:**  `123456`
+
+## GitHub link：https://github.com/CoderYYui/Student-Score-Entry-and-Analysis-System
